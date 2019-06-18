@@ -1,17 +1,14 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-class Shape
-{
-private:
-
+class Shape{
 public:
-    Shape();
-    virtual float area();
-    virtual float volume();
+    virtual float area() = 0;
+    virtual float volume() = 0;
+    ~Shape();
 };
 
 
 
 
-#endif SHAPE_HPP
+#endif // SHAPE_HPP
