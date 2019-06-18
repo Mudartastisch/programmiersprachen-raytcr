@@ -19,3 +19,11 @@ glm::vec3 Sphere::getCenter(){
 float Sphere::getRadius(){
     return radius_;
 }
+
+std::string Sphere::getName(){
+	return name_;
+}
+
+Color Sphere::getColor(){
+	return color_;
+}

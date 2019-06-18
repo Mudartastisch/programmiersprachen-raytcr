@@ -21,3 +21,11 @@ glm::vec3 Box::getMin(){
 glm::vec3 Box::getMax(){
 	return max_;
 }
+
+std::string Box::getName(){
+	return name_;
+}
+
+Color Box::getColor(){
+	return color_;
+}
