@@ -4,10 +4,17 @@
 *.o
 *.obj
 
+# Precompiled Headers
+*.gch
+*.pch
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
+
+# Fortran module files
+*.mod
 
 # Compiled Static libraries
 *.lai
@@ -20,7 +27,22 @@
 *.out
 *.app
 
-checkerboard.ppm
+# Temporary files
+*~
+.nfs*
 
-build
-cmake_out
+# build directory
+[Bb]uild
+
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CMakeFiles
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+Aufgabe_4__update_29_05_2019.pdf
