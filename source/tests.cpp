@@ -3,6 +3,7 @@
 #include <Shape.hpp>
 #include <Sphere.hpp>
 #include <Box.hpp>
+#include <iostream>
 
 glm::vec3 zeroVec{ 0.0,0.0,0.0 };
 glm::vec3 oneVec{ 1.0,1.0,1.0 };
@@ -34,6 +35,13 @@ TEST_CASE("create box") {
 
 	REQUIRE(advanced.area() == Approx(8.0f));
 	REQUIRE(advanced.volume() == Approx(1.0f));
+}
+
+TEST_CASE("print % operator<<") {
+	Sphere s{ zeroVec,{3.85f},{"printSphere"},{black} };
+	Box b{ zeroVec, oneVec,{ "printBox" },{ black } };
+	std::cout << s;
+	std::cout << b;
 }
 
 
