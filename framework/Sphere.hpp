@@ -3,7 +3,9 @@
 
 #include "Shape.hpp"
 #include "color.hpp"
-#include <glm/vec3.hpp>
+#include "hitPoint.hpp"
+#include "ray.hpp"
+
 
 class Sphere : public Shape{
 public:
@@ -17,6 +19,8 @@ public:
     std::string getName() const;
     Color getColor() const;
     std::ostream& print(std::ostream & os) const override;
+    hitPoint intersect(Ray ray_) const;
+
 
 private:
     glm::vec3 center_;

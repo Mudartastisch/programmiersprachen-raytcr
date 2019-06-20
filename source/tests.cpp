@@ -1,9 +1,11 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
-#include <Shape.hpp>
 #include <Sphere.hpp>
 #include <Box.hpp>
 #include <iostream>
+#include <ray.hpp>
+#include <glm/gtx/intersect.hpp>
+#include <hitPoint.hpp>
 
 glm::vec3 zeroVec{ 0.0,0.0,0.0 };
 glm::vec3 oneVec{ 1.0,1.0,1.0 };
@@ -42,6 +44,56 @@ TEST_CASE("print % operator<<") {
 	Box b{ zeroVec, oneVec,{ "printBox" },{ black } };
 	std::cout << s;
 	std::cout << b;
+}
+
+
+TEST_CASE("intersectRaySphere")
+{
+	// Ray
+	glm::vec3 ray_origin{ 0.0 ,0.0 ,0.0 };
+	// ray direction has to be normalized !
+	// you can use :
+	// v = glm :: normalize ( some_vector )
+	glm::vec3 ray_direction{ 0.0 ,0.0 ,1.0 };
+	// Sphere
+	glm::vec3 sphere_center{ 0.0 ,0.0 ,5.0 };
+	float sphere_radius{ 1.0 };
+	float distance{ 0.0 };
+	auto result = glm::intersectRaySphere(
+		ray_origin, ray_direction,
+		sphere_center,
+		sphere_radius * sphere_radius, // squared radius !!!
+		distance);
+	REQUIRE(distance == Approx(4.0f));
+	Sphere s1{{0.0 ,0.0 ,5.0}, 1.0, "s1", black };
+	glm::vec3 ray_direction_negative{ 0.0 ,0.0 ,-1.0 };
+	hitPoint miss;
+	miss = s1.intersect(Ray{ray_origin, ray_direction_negative});
+	REQUIRE(miss.hit == false);
+	hitPoint shouldHit1(s1.intersect(Ray{ray_origin, ray_direction}));
+	REQUIRE(shouldHit1.hit);
+	Sphere s2{{5.0 ,5.0 ,5.0}, 1.0, "s1", black };
+	glm::vec3 ros2y{ 5.0 ,0.0 ,5.0 };
+	glm::vec3 rds2y{ 0.0 ,1.0 ,0.0 };
+	glm::vec3 ros2z{ 5.0 ,5.0 ,0.0 };
+	glm::vec3 rds2z{ 0.0 ,0.0 ,1.0 };
+	hitPoint shouldHit2(s2.intersect(Ray{ros2y, rds2y}));
+	hitPoint shouldHit3(s2.intersect(Ray{ros2z, rds2z}));
+	REQUIRE(shouldHit2.hit);
+	REQUIRE(shouldHit3.hit);
+
+}
+
+TEST_CASE("intersectRaySphere")
+{
+	Color red {255 , 0 , 0};
+	glm :: vec3 position {0.0 f , 0.0 f , 0.0 f };
+	Sphere * s1 = new Sphere { position , 1.2 f , red , " sphere0 " };
+	Shape * s2 = new Sphere { position , 1.2 f , red , " sphere1 " };
+	s1 - > print ( std :: cout );
+	s2 - > print ( std :: cout );
+	delete s1 ;
+	delete s2 ;
 }
 
 
