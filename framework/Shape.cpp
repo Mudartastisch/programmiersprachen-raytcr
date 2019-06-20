@@ -1,6 +1,9 @@
 #include "Shape.hpp"
+#include <iostream>
 
-Shape::~Shape(){};
+Shape::~Shape(){
+    std::cout << "Deconstructing shape" << std::endl;
+};
 
 std::ostream& Shape::print(std::ostream& os) const{
     os << "Name: " << name_ << " " << "Color: " << color_ ;

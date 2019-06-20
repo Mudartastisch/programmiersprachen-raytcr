@@ -1,10 +1,13 @@
 #include "Sphere.hpp"
+#include <iostream>
 #include <math.h>
 #include <numeric>
 #include <glm/gtx/intersect.hpp>
 #define _USE_MATH_DEFINES
 
-Sphere::~Sphere(){};
+Sphere::~Sphere(){
+    std::cout << "Deconstructing sphere" << std::endl;
+};
 
 float Sphere::area() const{
     return (4 * M_PI * (radius_ * radius_));
